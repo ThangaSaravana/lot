@@ -10,6 +10,16 @@ function App() {
 
   const [arr, setArr] = useState(["A", "B", "C", "D", "E", "F"]);
 
+  const textarrclone = ["A", "B", "C", "D", "E", "F"];
+  const ballarrclone = [
+    { ballid: 0, status: "open", color: "green" },
+    { ballid: 1, status: "open", color: "violet" },
+    { ballid: 2, status: "open", color: "pink" },
+    { ballid: 3, status: "open", color: "red" },
+    { ballid: 4, status: "open", color: "orange" },
+    { ballid: 5, status: "open", color: "lightgreen" },
+  ];
+
   const [ballsarr, setBallsArr] = useState([
     { ballid: 0, status: "open", color: "green" },
     { ballid: 1, status: "open", color: "violet" },
@@ -38,7 +48,8 @@ function App() {
 
   const handleclick = () => {
     setBgColor(bgColor === "red" ? "blue" : "red");
-    window.location.reload();
+    shuffleArr(textarrclone, 1);
+    shuffleArr(ballarrclone, 2);
   };
 
   const shuffleArr = (val, id) => {
@@ -252,12 +263,13 @@ function App() {
               }}
             >
               <h1
-                style={{
-                  fontSize: "8vw", // Dynamic font size based on screen width
-                  fontWeight: "bold",
-                  color: "yellow",
-                  textAlign: "center",
-                }}
+                className="h1tag"
+                // style={{
+                //   fontSize: "6vw", // Dynamic font size based on screen width
+                //   fontWeight: "bold",
+                //   color: "yellow",
+                //   textAlign: "center",
+                // }}
               >
                 {arr[currindex]}
               </h1>
