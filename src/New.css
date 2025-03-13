@@ -106,3 +106,73 @@
   .lightgreen{
     filter: hue-rotate(375deg);
   }
+
+
+  .table-container {
+    padding: 0 5px;
+  }
+  
+  .header-content, .coach-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  
+  .team-logo, .coach-logo {
+    width: 20px !important;
+    height: 20px !important;
+    max-width: 20px !important;
+  }
+  
+  .team-name, .coach-name {
+    font-size: 0.75rem;
+    white-space: nowrap;
+    position: static;
+    left: 0;
+  }
+  
+  /* Small devices (landscape phones, 576px and up) */
+  @media (min-width: 576px) {
+    .team-name, .coach-name {
+      font-size: 0.9rem;
+    }
+    
+    .team-logo, .coach-logo {
+      width: 25px !important;
+      height: 25px !important;
+    }
+  }
+  
+  /* Medium devices (tablets, 768px and up) */
+  @media (min-width: 768px) {
+    .team-name, .coach-name {
+      font-size: 1rem;
+    }}
+
+
+
+
+    .result-mobile {
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      }
+      
+      .team-btn {
+        transition: transform 0.2s;
+      }
+      
+      .team-btn:active {
+        transform: scale(0.95);
+      }
+      
+      @media (max-width: 375px) {
+        .team-btn {
+          width: 35px !important;
+          height: 35px !important;
+          font-size: 0.6rem !important;
+        }
+        
+        .text-white {
+          font-size: 0.8rem !important;
+        }
+      }

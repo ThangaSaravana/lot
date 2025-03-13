@@ -481,13 +481,110 @@ function App() {
 
         {/* Result Column */}
         {/* Result Column - Mobile Position */}
-        <div className="col-12 d-md-none mt-4">
+        <div className="col-12 d-md-none mt-4 px-2">
           <div
             className="result-mobile"
-            style={{ backgroundColor: "green", padding: "15px" }}
+            style={{
+              borderRadius: "10px",
+              padding: "8px 0",
+            }}
           >
-            <h3>Results</h3>
-            {/* Add your mobile result content here */}3 of 3
+            <div className="d-flex justify-content-between align-items-center">
+              {/* Team 1 Section */}
+              <div className="col-4 d-flex flex-column align-items-center px-2">
+                <button
+                  className="team-btn mb-1"
+                  style={{
+                    width: "77px",
+                    height: "31px",
+                    borderRadius: "10%",
+                    border: "none",
+                    fontSize: "1rem",
+                    fontWeight: 900,
+                  }}
+                >
+                  Team
+                </button>
+                <span
+                  className="text text-truncate"
+                  style={{
+                    fontSize: "0.9rem",
+                    maxWidth: "100%",
+                    fontWeight: "500",
+                    color: "black!important",
+                  }}
+                >
+                  {teamName}
+                </span>
+                {currentTeamUrl && (
+                  <img
+                    src={currentTeamUrl}
+                    className="mt-1"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      objectFit: "contain",
+                    }}
+                    alt="Team logo"
+                  />
+                )}
+              </div>
+
+              {/* Next Button Section */}
+              <div className="col-4 d-flex justify-content-center align-items-center">
+                <button
+                  className="btn btn-secondary py-2 px-3"
+                  style={{
+                    borderRadius: "20px",
+                    fontWeight: "600",
+                    fontSize: "0.9rem",
+                  }}
+                  onClick={() => handleReveal()}
+                >
+                  Next
+                </button>
+              </div>
+
+              {/* Team 2 Section */}
+              <div className="col-4 d-flex flex-column align-items-center px-2">
+                <button
+                  className="team-btn mb-1"
+                  style={{
+                    width: "77px",
+                    height: "31px",
+                    borderRadius: "10%",
+                    border: "none",
+                    fontSize: "1rem",
+                    fontWeight: 900,
+                  }}
+                >
+                  Coach
+                </button>
+                <span
+                  className="text text-truncate"
+                  style={{
+                    fontSize: "0.9rem",
+                    maxWidth: "100%",
+                    fontWeight: "500",
+                    color: "black!important",
+                  }}
+                >
+                  {coachName}
+                </span>
+                {currentCoachUrl && (
+                  <img
+                    src={currentCoachUrl}
+                    className="mt-1"
+                    style={{
+                      width: "30px",
+                      height: "30px",
+                      objectFit: "contain",
+                    }}
+                    alt="Team logo"
+                  />
+                )}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -606,9 +703,11 @@ function App() {
       <div className="row">
         <div className="col-12">
           <div className="table-container">
-            <div className="table-responsive">
+            <div
+              className="table-responsive"
+              style={{ overflowX: "auto", WebkitOverflowScrolling: "touch" }}
+            >
               <table className="table table-bordered table-striped text-center">
-                {/* Table content with added responsive breakpoints */}
                 <thead>
                   <tr>
                     {tablearr.map((val, index) => (
@@ -618,81 +717,45 @@ function App() {
                         style={{
                           backgroundColor: "black",
                           color: "white",
+                          minWidth: "120px", // Added minimum width for better touch
                         }}
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          {val.teamurl != null ? (
+                        <div className="header-content">
+                          {val.teamurl && (
                             <img
-                              // onClick={() => handleselectedcoach(val)}
-                              // className={ball.color}
                               src={val.teamurl}
-                              style={{
-                                width: "100%",
-                                height: "25px",
-                                maxWidth: "25px",
-                                transition: "transform 0.3s",
-                                cursor: "pointer",
-                                left: "2px",
-                              }}
+                              className="team-logo"
+                              alt="team"
                             />
-                          ) : null}
-                          <span style={{ left: "10px", position: "relative" }}>
-                            {val.name}
-                          </span>
+                          )}
+                          <span className="team-name">{val.name}</span>
                         </div>
                       </th>
                     ))}
                   </tr>
-                  <tr>
+                  <tr className="coach-row">
                     {tablearr.map((val, index) => (
                       <td
                         key={index}
-                        // className="team-header"
                         style={{
-                          backgroundColor: "",
-                          color: "black",
+                          padding: "8px",
+                          minWidth: "120px", // Match header width
                         }}
                       >
-                        <div
-                          style={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                            alignItems: "center",
-                          }}
-                        >
-                          {val.correscoachurl != null ? (
+                        <div className="coach-content">
+                          {val.correscoachurl && (
                             <img
-                              // onClick={() => handleselectedcoach(val)}
-                              // className={ball.color}
                               src={val.correscoachurl}
-                              style={{
-                                width: "100%",
-                                height: "25px",
-                                maxWidth: "25px",
-                                transition: "transform 0.3s",
-                                cursor: "pointer",
-                                left: "2px",
-                              }}
+                              className="coach-logo"
+                              alt="coach"
                             />
-                          ) : null}
-                          <span style={{ left: "10px", position: "relative" }}>
-                            {val.correscoach}
-                          </span>
+                          )}
+                          <span className="coach-name">{val.correscoach}</span>
                         </div>
                       </td>
                     ))}
                   </tr>
                 </thead>
-
-                {/* ... rest of table content ... */}
               </table>
             </div>
           </div>
