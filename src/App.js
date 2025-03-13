@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [classnam, setClassNam] = useState("");
   const [currindex, setCurrIndex] = useState(0);
+  const [bgColor, setBgColor] = useState("red");
 
   const [arr, setArr] = useState(["A", "B", "C", "D", "E", "F"]);
 
@@ -34,6 +35,11 @@ function App() {
     shuffleArr(arr, 1);
     shuffleArr(ballsarr, 2);
   }, []);
+
+  const handleclick = () => {
+    setBgColor(bgColor === "red" ? "blue" : "red");
+    window.location.reload();
+  };
 
   const shuffleArr = (val, id) => {
     let nwarr = [...val];
@@ -74,6 +80,7 @@ function App() {
       style={{
         height: "100vh",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
       }}
@@ -173,6 +180,26 @@ function App() {
           </div>
         </div>
       </div>
+
+      <div
+        style={{
+          width: "90px",
+          height: "30px",
+          backgroundColor: bgColor,
+          borderRadius: "10px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          cursor: "pointer",
+          color: "white",
+          fontWeight: "bold",
+          userSelect: "none",
+        }}
+        onClick={() => handleclick()}
+      >
+        shuffle
+      </div>
+
       {/* <!-- Modal --> */}
       <div
         className="modal fade"
