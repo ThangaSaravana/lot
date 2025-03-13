@@ -1,4 +1,4 @@
-import "./App.css";
+import "./New.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import { useState, useEffect } from "react";
@@ -8,48 +8,173 @@ function App() {
   const [currindex, setCurrIndex] = useState(0);
   const [bgColor, setBgColor] = useState("red");
 
-  const [arr, setArr] = useState(["A", "B", "C", "D", "E", "F"]);
+  const [teamName, setTeamName] = useState("");
+  const [coachName, setCoachName] = useState("");
+  const [isnext, setIsNext] = useState(false);
 
+  const [currentTeamData, setCurrentTeamData] = useState([]);
+  const [currentTeamUrl, setCurrentTeamUrl] = useState(null);
+  const [currentCoachUrl, setCurrentCoachUrl] = useState(null);
+
+  const [arr, setArr] = useState(["A", "B", "C", "D", "E", "F"]);
   const textarrclone = ["A", "B", "C", "D", "E", "F"];
-  const ballarrclone = [
-    { ballid: 0, status: "open", color: "green" },
-    { ballid: 1, status: "open", color: "violet" },
-    { ballid: 2, status: "open", color: "pink" },
-    { ballid: 3, status: "open", color: "red" },
-    { ballid: 4, status: "open", color: "orange" },
-    { ballid: 5, status: "open", color: "lightgreen" },
+
+  const teamsarrClone = [
+    { ballid: 0, name: "Delhi", url: require("../src/assets/red.png") },
+    { ballid: 1, name: "Mumbai", url: require("../src/assets/blue.png") },
+    { ballid: 2, name: "Chennai", url: require("../src/assets/cyan.png") },
+    { ballid: 3, name: "Hyderabad", url: require("../src/assets/green.png") },
+    { ballid: 4, name: "Bhubaneswar", url: require("../src/assets/pink.png") },
+    { ballid: 5, name: "Bengaluru", url: require("../src/assets/yellow.png") },
   ];
 
-  const [ballsarr, setBallsArr] = useState([
-    { ballid: 0, status: "open", color: "green" },
-    { ballid: 1, status: "open", color: "violet" },
-    { ballid: 2, status: "open", color: "pink" },
-    { ballid: 3, status: "open", color: "red" },
-    { ballid: 4, status: "open", color: "orange" },
-    { ballid: 5, status: "open", color: "lightgreen" },
+  const coacharrClone = [
+    { id: 0, name: "AAAAAAAA", url: require("../src/assets/red.png") },
+    { id: 1, name: "BBBBBBBB", url: require("../src/assets/blue.png") },
+    { id: 2, name: "CCCCCCCC", url: require("../src/assets/cyan.png") },
+    { id: 3, name: "DDDDDDDD", url: require("../src/assets/green.png") },
+    { id: 4, name: "EEEEEEEE", url: require("../src/assets/pink.png") },
+    { id: 5, name: "FFFFFFFF", url: require("../src/assets/yellow.png") },
+  ];
+
+  const [teamsarr, setTeamsArr] = useState([
+    { ballid: 0, name: "Delhi", url: require("../src/assets/red.png") },
+    { ballid: 1, name: "Mumbai", url: require("../src/assets/blue.png") },
+    { ballid: 2, name: "Chennai", url: require("../src/assets/cyan.png") },
+    { ballid: 3, name: "Hyderabad", url: require("../src/assets/green.png") },
+    { ballid: 4, name: "Bhubaneswar", url: require("../src/assets/pink.png") },
+    { ballid: 5, name: "Bengaluru", url: require("../src/assets/yellow.png") },
   ]);
 
-  const [configuremap, setConfiguremap] = useState({
-    0: "open",
-    1: "open",
-    2: "open",
-    3: "open",
-    4: "open",
-    5: "open",
-    6: "open",
-    7: "open",
-    8: "open",
-  });
+  const [coacharr, setCoacharr] = useState([
+    { id: 0, name: "AAAAAAAA", url: require("../src/assets/red.png") },
+    { id: 1, name: "BBBBBBBB", url: require("../src/assets/blue.png") },
+    { id: 2, name: "CCCCCCCC", url: require("../src/assets/cyan.png") },
+    { id: 3, name: "DDDDDDDD", url: require("../src/assets/green.png") },
+    { id: 4, name: "EEEEEEEE", url: require("../src/assets/pink.png") },
+    { id: 5, name: "FFFFFFFF", url: require("../src/assets/yellow.png") },
+  ]);
+
+  // const [configuremap, setConfiguremap] = useState({
+  //   0: "open",
+  //   1: "open",
+  //   2: "open",
+  //   3: "open",
+  //   4: "open",
+  //   5: "open",
+  //   6: "open",
+  //   7: "open",
+  //   8: "open",
+  // });
+  const tablearrclone = [
+    {
+      id: 0,
+      name: "Delhi",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 1,
+      name: "Mumbai",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 2,
+      name: "Chennai",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 3,
+      name: "Hyderabad",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 4,
+      name: "Bhubaneswar",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 5,
+      name: "Bengaluru",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+  ];
+  const [tablearr, setTableArr] = useState([
+    {
+      id: 0,
+      name: "Delhi",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 1,
+      name: "Mumbai",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 2,
+      name: "Chennai",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 3,
+      name: "Hyderabad",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 4,
+      name: "Bhubaneswar",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+    {
+      id: 5,
+      name: "Bengaluru",
+      teamurl: null,
+      correscoach: "",
+      correscoachurl: null,
+    },
+  ]);
+
+  console.log(teamName);
 
   useEffect(() => {
     shuffleArr(arr, 1);
-    shuffleArr(ballsarr, 2);
+    shuffleArr(teamsarr, 2);
+    shuffleArr(coacharr, 3);
   }, []);
 
   const handleclick = () => {
-    setBgColor(bgColor === "red" ? "blue" : "red");
+    // setBgColor(bgColor === "red" ? "blue" : "red");
+    // setTablesArr(tablearrclone);
     shuffleArr(textarrclone, 1);
-    shuffleArr(ballarrclone, 2);
+    shuffleArr(teamsarrClone, 2);
+    shuffleArr(coacharrClone, 3);
+    setCurrentTeamData([]);
+    setTableArr(tablearrclone);
+    setTeamName("");
+    setCurrentTeamUrl(null);
+    setCoachName("");
+    setCurrentCoachUrl("");
   };
 
   const shuffleArr = (val, id) => {
@@ -63,7 +188,9 @@ function App() {
     if (id == 1) {
       setArr(nwarr);
     } else if (id == 2) {
-      setBallsArr(nwarr);
+      setTeamsArr(nwarr);
+    } else if (id == 3) {
+      setCoacharr(nwarr);
     }
   };
 
@@ -76,205 +203,508 @@ function App() {
   //   setCurrIndex(index);
   // };
 
-  const selectball = (id) => {
-    let currentball = ballsarr[id];
-    let currentballid = currentball.ballid;
-    setCurrIndex(currentball.ballid);
-    setClassNam(currentball.color);
+  // const selectball = (id) => {
+  //   if (teamName != "") {
+  //     let currentball = ballsarr[id];
+  //     let currentid = currentball.ballid;
+  //     let currentcolor = currentball.color;
+  //     // console.log(currentball);
+  //     // for setting balls in table
+  //     let newtablesarr = tableballsarr.map((val) =>
+  //       val.teamname === teamName
+  //         ? {
+  //             ...val,
+  //             ballid: currentid,
+  //             color: currentcolor,
+  //             istrue: !val.istrue,
+  //           }
+  //         : val
+  //     );
+  //     setTablesArr(newtablesarr);
 
-    let nwballarr = [...ballsarr].filter((val) => val.ballid != currentballid);
-    setBallsArr(nwballarr);
+  //     let currentballid = currentball.ballid;
+  //     setCurrIndex(currentball.ballid);
+  //     setClassNam(currentball.color);
+
+  //     let nwballarr = [...ballsarr].filter(
+  //       (val) => val.ballid != currentballid
+  //     );
+  //     setBallsArr(nwballarr);
+  //     setTeamName("");
+  //   }
+  // };
+
+  const handleTeamName = (name) => {
+    setTeamName(name);
   };
 
+  // const handleshowball = (val) => {
+  //   let color = tableballsarr[val].color;
+  //   setClassNam(color);
+
+  //   setCurrIndex(val);
+  // };
+
+  // console.log("tables arr", tableballsarr);
+
+  const handleSelectedTeam = (val) => {
+    if (teamName == "") {
+      setCurrentTeamUrl(val.url);
+      let team = val.name;
+      setTeamName(team);
+      let nwarr = teamsarr.filter((val) => val.name != team);
+      setTeamsArr(nwarr);
+    }
+  };
+
+  const handleselectedcoach = (val) => {
+    if (coachName == "") {
+      setCurrentCoachUrl(val.url);
+      let coach = val.name;
+      setCoachName(val.name);
+
+      let nwarr = coacharr.filter((val) => val.name != coach);
+      setCoacharr(nwarr);
+    }
+  };
+
+  const handleReveal = () => {
+    let data = {
+      team: teamName,
+      coach: coachName,
+      teamurl: currentTeamUrl,
+      coachurl: currentCoachUrl,
+    };
+
+    setCurrentTeamData([...currentTeamData, data]);
+
+    let nwarr = tablearr.map((val) => {
+      if (val.name == teamName) {
+        val.teamurl = currentTeamUrl;
+        val.correscoach = coachName;
+        val.correscoachurl = currentCoachUrl;
+      }
+      return val;
+    });
+
+    setTableArr(nwarr);
+
+    setTeamName("");
+    setCoachName("");
+    setCurrentTeamUrl("");
+    setCurrentCoachUrl("");
+  };
+
+  console.log(currentTeamData);
+
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div
-        className="container-lg d-flex justify-content-center align-items-center"
-        style={{
-          width: "90%",
-          maxWidth: "800px",
-          height: "70vh",
-          minHeight: "400px",
-          margin: "0 auto",
-          position: "relative",
-          overflow: "hidden", // Add overflow hidden
-        }}
-      >
-        <img
-          src={require("../src/assets/jar-removebg-preview.png")}
-          alt="cricketball"
-          style={{
-            width: "60%",
-            height: "auto",
-            maxHeight: "100%",
-            position: "relative",
-            zIndex: 1, // Ensure jar stays above other elements
-          }}
-        />
-
-        {/* Balls container */}
-        <div
-          style={{
-            position: "absolute",
-            width: "22%",
-            height: "45%",
-            bottom: "20%",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "flex-end",
-            padding: "0 10px",
-            zIndex: 2, // Ensure balls appear above jar
-          }}
-          className="balls-container"
-        >
-          {/* Columns (same structure as before) */}
-          {/* Left Column */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column-reverse",
-              gap: "8px",
-              width: "48%",
-            }}
-          >
-            {ballsarr.slice(0, 3).map((ball, index) => (
+    <div className="container-fluid text-center" style={{ overflow: "auto" }}>
+      <div className="row">
+        {/* Teams Column */}
+        <div className="col-12 col-md-5">
+          <div className="jar-container">
+            <h3 className="d-md-none">Teams</h3>
+            {/* Mobile-first heading */}
+            <h1 className="d-none d-md-block">Teams</h1>
+            {/* Desktop heading */}
+            <div className="jar-wrapper" style={{ position: "relative" }}>
               <img
-                onClick={() => selectball(index)}
-                className={ball.color}
-                src={require("../src/assets/ball.png")}
-                key={ball.ballid}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxWidth: "85px",
-                  transition: "transform 0.3s",
-                }}
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
+                src={require("../src/assets/jar-removebg-preview.png")}
+                alt="jar"
+                className="jar-image"
               />
-            ))}
-          </div>
+              {/* Balls container - same as before but with responsive classes */}
+              <div
+                style={{
+                  position: "absolute",
+                  width: "22%",
+                  height: "45%",
+                  bottom: "13%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                  padding: "0 10px",
+                  zIndex: 2, // Ensure balls appear above jar
+                  left: "39%",
+                }}
+                className="balls-container"
+              >
+                {/* Columns (same structure as before) */}
+                {/* Left Column */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    gap: "8px",
+                    width: "48%",
+                  }}
+                >
+                  {teamsarr.slice(0, 3).map((val, index) => (
+                    <img
+                      onClick={() => handleSelectedTeam(val)}
+                      // className={ball.color}
+                      src={val.url}
+                      key={index}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxWidth: "85px",
+                        transition: "transform 0.3s",
+                        cursor: "pointer",
+                      }}
+                      // data-bs-toggle={teamName != "" ? "modal" : ""}
+                      // data-bs-target={teamName != "" ? "#exampleModal" : ""}
+                    />
+                  ))}
+                </div>
 
-          {/* Right Column */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column-reverse",
-              gap: "8px",
-              width: "48%",
-            }}
-          >
-            {ballsarr.slice(3, 6).map((ball, index) => (
-              <img
-                onClick={() => selectball(index + 3)}
-                className={ball.color}
-                src={require("../src/assets/ball.png")}
-                key={ball.ballid}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxWidth: "85px",
-                  transition: "transform 0.3s",
-                }}
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-              />
-            ))}
+                {/* Right Column */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    gap: "8px",
+                    width: "48%",
+                  }}
+                >
+                  {teamsarr.slice(3, 6).map((val, index) => (
+                    <img
+                      onClick={() => handleSelectedTeam(val)}
+                      // onClick={() => selectball(index + 3)}
+                      // className={ball.color}
+                      src={val.url}
+                      key={index}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxWidth: "85px",
+                        transition: "transform 0.3s",
+                        cursor: "pointer",
+                      }}
+                      // data-bs-toggle={teamName != "" ? "modal" : ""}
+                      // data-bs-target={teamName != "" ? "#exampleModal" : ""}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div
-        style={{
-          width: "90px",
-          height: "30px",
-          backgroundColor: bgColor,
-          borderRadius: "10px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          cursor: "pointer",
-          color: "white",
-          fontWeight: "bold",
-          userSelect: "none",
-        }}
-        onClick={() => handleclick()}
-      >
-        shuffle
-      </div>
+        {/* Coaches Column */}
+        <div className="col-12 col-md-5">
+          <div className="jar-container">
+            <h3 className="d-md-none">Coaches</h3>
+            {/* Mobile-first heading */}
+            <h1 className="d-none d-md-block">Coaches</h1>
+            {/* Desktop heading */}
+            <div className="jar-wrapper" style={{ position: "relative" }}>
+              <img
+                src={require("../src/assets/jar-removebg-preview.png")}
+                alt="jar"
+                className="jar-image"
+              />
+              {/* Balls container - same as before but with responsive classes */}
+              <div
+                style={{
+                  position: "absolute",
+                  width: "22%",
+                  height: "45%",
+                  bottom: "13%",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-end",
+                  padding: "0 10px",
+                  zIndex: 2, // Ensure balls appear above jar
+                  left: "39%",
+                }}
+                className="balls-container"
+              >
+                {/* Columns (same structure as before) */}
+                {/* Left Column */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    gap: "8px",
+                    width: "48%",
+                  }}
+                >
+                  {coacharr.slice(0, 3).map((val, index) => (
+                    <img
+                      onClick={() => handleselectedcoach(val)}
+                      // className={ball.color}
+                      src={val.url}
+                      key={index}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxWidth: "85px",
+                        transition: "transform 0.3s",
+                        cursor: "pointer",
+                      }}
+                    />
+                  ))}
+                </div>
 
-      {/* <!-- Modal --> */}
-      <div
-        className="modal fade"
-        id="exampleModal"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div
-          className="modal-dialog modal-dialog-centered"
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+                {/* Right Column */}
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column-reverse",
+                    gap: "8px",
+                    width: "48%",
+                  }}
+                >
+                  {coacharr.slice(3, 6).map((val, index) => (
+                    <img
+                      onClick={() => handleselectedcoach(val)}
+                      // className={ball.color}
+                      src={val.url}
+                      key={index}
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxWidth: "85px",
+                        transition: "transform 0.3s",
+                        cursor: "pointer",
+                      }}
+                      // data-bs-toggle={teamName != "" ? "modal" : ""}
+                      // data-bs-target={teamName != "" ? "#exampleModal" : ""}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Result Column */}
+        {/* Result Column - Mobile Position */}
+        <div className="col-12 d-md-none mt-4">
           <div
-            style={{
-              width: "90%", // Adjust width for mobile responsiveness
-              maxWidth: "350px", // Prevent it from getting too big
-              height: "45vh",
-              maxHeight: "400px", // Set a max height
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              flexDirection: "column",
-              position: "relative",
-              borderRadius: "10px", // Rounded corners for better design
-              padding: "20px", // Padding for better spacing
-            }}
+            className="result-mobile"
+            style={{ backgroundColor: "green", padding: "15px" }}
           >
-            <img
-              className={classnam}
-              src={require("../src/assets/ball.png")}
-              alt="Cricket ball"
-              style={{
-                width: "50%", // Adjusted for responsiveness
-                maxWidth: "150px", // Prevents oversizing
-                height: "auto",
-              }}
-            />
+            <h3>Results</h3>
+            {/* Add your mobile result content here */}3 of 3
+          </div>
+        </div>
 
+        {/* Result Column - Desktop Position */}
+        <div className="col-md-2 d-none d-md-block">
+          <div className="result-desktop">
             <div
               style={{
                 width: "100%",
                 height: "100%",
+
                 display: "flex",
-                justifyContent: "center",
+                flexDirection: "column",
+                justifyContent: "space-evenly",
                 alignItems: "center",
-                position: "absolute",
               }}
             >
-              <h1
-                className="h1tag"
-                // style={{
-                //   fontSize: "6vw", // Dynamic font size based on screen width
-                //   fontWeight: "bold",
-                //   color: "yellow",
-                //   textAlign: "center",
-                // }}
+              {/* for result team */}
+              <div
+                style={{
+                  width: "80%",
+                  height: "45%",
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
               >
-                {arr[currindex]}
-              </h1>
+                <button
+                  className="shuffle-btn"
+                  style={{ width: "125px", height: "36px" }}
+                >
+                  Team
+                </button>
+                <h3 style={{ top: "20px", position: "relative" }}>
+                  {teamName}
+                </h3>
+                <img
+                  className={"green"}
+                  src={currentTeamUrl}
+                  style={{
+                    width: "50%",
+                    height: "auto",
+                    maxWidth: "45px",
+                    transition: "transform 0.3s",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "13px",
+                  }}
+                />
+              </div>
+              {/* for reveal */}
+              <div
+                style={{
+                  width: "80%",
+                  height: "10%",
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <button
+                  className="shuffle-btn"
+                  style={{ width: "66px", height: "27px", fontSize: 12 }}
+                  onClick={() => handleReveal()}
+                >
+                  Next
+                </button>
+              </div>
+              {/* for result coach */}
+              <div
+                style={{
+                  width: "80%",
+                  height: "45%",
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <button
+                  className="shuffle-btn"
+                  style={{ width: "125px", height: "36px" }}
+                >
+                  Coach
+                </button>
+                <h3 style={{ top: "20px", position: "relative" }}>
+                  {coachName}
+                </h3>
+                <img
+                  className={"green"}
+                  src={currentCoachUrl}
+                  style={{
+                    width: "50%",
+                    height: "auto",
+                    maxWidth: "45px",
+                    transition: "transform 0.3s",
+                    cursor: "pointer",
+                    position: "relative",
+                    top: "13px",
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Add your desktop result content here */}
+          </div>
+        </div>
+      </div>
+
+      {/* Table Section */}
+      <div className="row">
+        <div className="col-12">
+          <div className="table-container">
+            <div className="table-responsive">
+              <table className="table table-bordered table-striped text-center">
+                {/* Table content with added responsive breakpoints */}
+                <thead>
+                  <tr>
+                    {tablearr.map((val, index) => (
+                      <th
+                        key={index}
+                        className="team-header"
+                        style={{
+                          backgroundColor: "black",
+                          color: "white",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {val.teamurl != null ? (
+                            <img
+                              // onClick={() => handleselectedcoach(val)}
+                              // className={ball.color}
+                              src={val.teamurl}
+                              style={{
+                                width: "100%",
+                                height: "25px",
+                                maxWidth: "25px",
+                                transition: "transform 0.3s",
+                                cursor: "pointer",
+                                left: "2px",
+                              }}
+                            />
+                          ) : null}
+                          <span style={{ left: "10px", position: "relative" }}>
+                            {val.name}
+                          </span>
+                        </div>
+                      </th>
+                    ))}
+                  </tr>
+                  <tr>
+                    {tablearr.map((val, index) => (
+                      <td
+                        key={index}
+                        // className="team-header"
+                        style={{
+                          backgroundColor: "",
+                          color: "black",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "center",
+                            alignItems: "center",
+                          }}
+                        >
+                          {val.correscoachurl != null ? (
+                            <img
+                              // onClick={() => handleselectedcoach(val)}
+                              // className={ball.color}
+                              src={val.correscoachurl}
+                              style={{
+                                width: "100%",
+                                height: "25px",
+                                maxWidth: "25px",
+                                transition: "transform 0.3s",
+                                cursor: "pointer",
+                                left: "2px",
+                              }}
+                            />
+                          ) : null}
+                          <span style={{ left: "10px", position: "relative" }}>
+                            {val.correscoach}
+                          </span>
+                        </div>
+                      </td>
+                    ))}
+                  </tr>
+                </thead>
+
+                {/* ... rest of table content ... */}
+              </table>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Shuffle Button */}
+      <div className="row mt-3">
+        <div className="col-12">
+          <button className="shuffle-btn" onClick={() => handleclick()}>
+            Shuffle
+          </button>
         </div>
       </div>
     </div>
@@ -282,3 +712,20 @@ function App() {
 }
 
 export default App;
+
+{
+  /* <span className="d-none d-sm-inline"> */
+}
+{
+  /* Full names for larger screens */
+}
+// Coaches
+// </span>
+{
+  /* <span className="d-sm-none"> */
+}
+{
+  /* Abbreviations for mobile */
+}
+// Coaches
+// </span>
