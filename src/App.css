@@ -36,6 +36,80 @@
   background-color:violet;
 }
 
+
+/* jump animation */
+@keyframes jumpOut {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  50% { transform: translateY(-150px) scale(1.2); }
+  100% { transform: translateY(-300px) scale(0); opacity: 0; }
+}
+
+.jump-animation {
+  animation: jumpOut 0.8s ease-out forwards;
+}
+
+/* //initial animation */
+@keyframes fallIntoJar {
+  0% {
+    transform: translateY(-300px) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(0) scale(1.1);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fall-animation {
+  animation: fallIntoJar 0.8s ease-out forwards;
+}
+
+@keyframes fallAndBounce {
+  0% {
+    transform: translateY(-500px) scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(10px) scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+.fall-bounce-animation {
+  animation: fallAndBounce 0.8s ease-out forwards;
+}
+
+
+/* @media (max-width: 768px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 300px;
+  }
+  
+  .ball-container {
+    width: 25% !important;
+    bottom: 15% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-lg {
+    height: 40vh !important;
+    min-height: 250px;
+  }
+  
+  .ball-container {
+    width: 30% !important;
+    bottom: 10% !important;
+  }
+}
+
 @media screen and (min-width: 1536px) {
   .jarcontainer {
     width: 71%;
@@ -45,4 +119,252 @@
     left: 13%;
     top: 235px;
   }
+} */
+
+
+/* // one set */
+/* @media (max-width: 768px) {
+  .container-lg {
+    width: 95% !important;
+    height: 60vh !important;
+  }
+  
+  .ball-column {
+    gap: 5px !important;
+  }
+  
+  .balls-container {
+    width: 28% !important;
+    bottom: 18% !important;
+  }
 }
+
+@media (max-width: 480px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 300px !important;
+  }
+  
+  .balls-container {
+    width: 32% !important;
+    bottom: 15% !important;
+    padding: 0 5px !important;
+  }
+  
+  .ball-column {
+    gap: 3px !important;
+  }
+} */
+
+
+
+
+/* @media (max-width: 768px) {
+  .container-lg {
+    height: 60vh !important;
+    min-height: 300px !important;
+  }
+  
+  .balls-container {
+    width: 25% !important;
+    bottom: 25% !important;
+    padding: 0 8px !important;
+  }
+  
+  .ball-column {
+    gap: 6px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 250px !important;
+  }
+  
+  .balls-container {
+    width: 38% !important;
+    bottom: 38% !important;
+    padding: 0 5px !important;
+  }
+  
+  .ball-column {
+    gap: 4px !important;
+  }
+} */
+
+
+
+
+
+
+
+
+/* 
+@media (max-width: 768px) {
+  .container-lg {
+    height: 60vh !important;
+    min-height: 300px !important;
+  }
+
+  .balls-container {
+    width: 35% !important;
+    bottom: 25% !important; 
+    height: 50% !important; 
+    transform: translateY(-5%); 
+  }
+
+  img[alt="cricketball"] {
+    width: 70% !important; 
+  }
+} */
+
+
+@media (max-width: 768px) {
+  .container-lg {
+    height: 60vh !important;
+    min-height: 300px !important;
+  }
+
+  .balls-container {
+    width: 24% !important;
+    bottom: 18% !important; 
+    height: 50% !important; 
+    transform: translateY(-5%); 
+  }
+
+  img[alt="cricketball"] {
+    width: 70% !important; 
+  }
+}
+
+@media (max-width: 546px) {
+  .container-lg {
+    height: 60vh !important;
+    min-height: 300px !important;
+  }
+
+  .balls-container {
+    width: 24% !important;
+    bottom: 21% !important; 
+    height: 50% !important; 
+    transform: translateY(-5%); 
+  }
+
+  img[alt="cricketball"] {
+    width: 70% !important; 
+  }
+}
+
+@media (max-width: 480px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 250px !important;
+  }
+
+  .balls-container {
+    width: 25% !important;
+    bottom: 24% !important;
+    height: 55% !important;
+    transform: translateY(-8%);
+    padding: 0 5px !important;
+  }
+
+  .ball-column {
+    gap: 4px !important;
+  }
+}
+
+@media (max-width: 374px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 250px !important;
+  }
+
+  .balls-container {
+    width: 23% !important;
+    bottom: 26% !important;
+    height: 55% !important;
+    transform: translateY(-8%);
+    padding: 0 5px !important;
+  }
+
+  .ball-column {
+    gap: 4px !important;
+  }
+}
+
+
+@media (max-width: 300px) {
+  .container-lg {
+    height: 50vh !important;
+    min-height: 250px !important;
+  }
+
+  .balls-container {
+    width: 23% !important;
+    bottom: 33% !important;
+    height: 55% !important;
+    transform: translateY(-8%);
+    padding: 0 5px !important;
+  }
+
+  .ball-column {
+    gap: 4px !important;
+  }
+}
+
+
+
+
+/* @media (max-width: 768px) {
+  .modal-content {
+    height: 40vh !important;
+    max-height: 400px !important;
+  }
+  
+  h1 {
+    font-size: clamp(50px, 12vw, 100px) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    height: 35vh !important;
+    max-height: 300px !important;
+  }
+  
+  h1 {
+    font-size: clamp(40px, 10vw, 80px) !important;
+  }
+  
+  img {
+    max-width: 60% !important;
+  }
+} */
+
+/* 
+@media (max-width: 768px) {
+  .ball-column img {
+    max-width: 60px !important;
+    width: 12vw !important;
+    min-width: 40px !important;
+  }
+  
+  .ball-column {
+    gap: 4px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .ball-column img {
+    max-width: 50px !important;
+    width: 10vw !important;
+    bottom: 60% !important;
+    min-width: 35px !important;
+  }
+  
+  .ball-column {
+    gap: 3px !important;
+  }
+} */
