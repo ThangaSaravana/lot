@@ -234,9 +234,9 @@ function App() {
   //   }
   // };
 
-  const handleTeamName = (name) => {
-    setTeamName(name);
-  };
+  // const handleTeamName = (name) => {
+  //   setTeamName(name);
+  // };
 
   // const handleshowball = (val) => {
   //   let color = tableballsarr[val].color;
@@ -269,30 +269,32 @@ function App() {
   };
 
   const handleReveal = () => {
-    let data = {
-      team: teamName,
-      coach: coachName,
-      teamurl: currentTeamUrl,
-      coachurl: currentCoachUrl,
-    };
+    if (coachName != "" && teamName != "") {
+      let data = {
+        team: teamName,
+        coach: coachName,
+        teamurl: currentTeamUrl,
+        coachurl: currentCoachUrl,
+      };
 
-    setCurrentTeamData([...currentTeamData, data]);
+      setCurrentTeamData([...currentTeamData, data]);
 
-    let nwarr = tablearr.map((val) => {
-      if (val.name == teamName) {
-        val.teamurl = currentTeamUrl;
-        val.correscoach = coachName;
-        val.correscoachurl = currentCoachUrl;
-      }
-      return val;
-    });
+      let nwarr = tablearr.map((val) => {
+        if (val.name == teamName) {
+          val.teamurl = currentTeamUrl;
+          val.correscoach = coachName;
+          val.correscoachurl = currentCoachUrl;
+        }
+        return val;
+      });
 
-    setTableArr(nwarr);
+      setTableArr(nwarr);
 
-    setTeamName("");
-    setCoachName("");
-    setCurrentTeamUrl("");
-    setCurrentCoachUrl("");
+      setTeamName("");
+      setCoachName("");
+      setCurrentTeamUrl("");
+      setCurrentCoachUrl("");
+    }
   };
 
   console.log(currentTeamData);
