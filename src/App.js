@@ -639,26 +639,7 @@ function App() {
                   }}
                 />
               </div>
-              {/* for reveal */}
-              <div
-                style={{
-                  width: "80%",
-                  height: "10%",
 
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  flexDirection: "column",
-                }}
-              >
-                <button
-                  className="shuffle-btn"
-                  style={{ width: "66px", height: "27px", fontSize: 12 }}
-                  onClick={() => handleReveal()}
-                >
-                  Next
-                </button>
-              </div>
               {/* for result coach */}
               <div
                 style={{
@@ -693,6 +674,32 @@ function App() {
                     top: "13px",
                   }}
                 />
+              </div>
+              {/* for reveal */}
+              <div
+                style={{
+                  width: "80%",
+                  height: "10%",
+
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexDirection: "column",
+                }}
+              >
+                <button
+                  className="shuffle-btn"
+                  style={{
+                    width: "66px",
+                    height: "27px",
+                    fontSize: 12,
+                    backgroundColor: "black",
+                    color: "white",
+                  }}
+                  onClick={() => handleReveal()}
+                >
+                  Next
+                </button>
               </div>
             </div>
 
